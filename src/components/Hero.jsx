@@ -3,7 +3,7 @@ import { Sparkles, ArrowRight } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-32">
       {/* Background elements */}
       <div className="absolute top-1/4 -left-20 w-72 h-72 bg-primary/20 rounded-full blur-[120px]" />
       <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary/20 rounded-full blur-[120px]" />
@@ -64,9 +64,9 @@ const Hero = () => {
 
       {/* Floating element demo */}
       <motion.div 
-        animate={{ y: [0, -20, 0] }}
+        animate={{ y: [0, -12, 0] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-500 opacity-50 flex flex-col items-center gap-2"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-500 opacity-50 flex flex-col items-center gap-2"
       >
         <span className="text-xs uppercase tracking-widest font-semibold">Scroll para o Manifesto</span>
         <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent" />
