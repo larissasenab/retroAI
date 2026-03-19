@@ -72,7 +72,7 @@ const CourseShowcase = () => {
                   >
                     <img 
                       src="/training-hero.png" 
-                      alt="Agile Mentorship" 
+                      alt="Mentoria Ágil" 
                       className="w-full h-full object-contain rounded-2xl drop-shadow-2xl"
                     />
                   </motion.div>

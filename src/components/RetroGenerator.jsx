@@ -32,14 +32,14 @@ const RetroGenerator = () => {
       dynamic = {
         title: "A Ilha da Segurança",
         theory: "Baseada na Pirâmide de Lencioni, foca em restaurar a confiança e expor vulnerabilidades de forma segura.",
-        visual: "Um board dividido em 'O que me dá medo', 'O que me dá esperança' e 'Acordos de Paz'.",
+        visual: "Um quadro dividido em 'O que me dá medo', 'O que me dá esperança' e 'Acordos de Paz'.",
         guide: "Inicie com um check-in de sentimentos. Use comunicação não-violenta e garanta que todos tenham voz sem interrupções."
       }
     } else if (scenario.includes('performance') || formData.energy >= 8 || formData.lastSprintResult === 'excelente') {
       dynamic = {
         title: "Velocidade de Cruzeiro",
         theory: "Foca no Lean e na remoção de desperdícios para times que já performam bem.",
-        visual: "Board 'Start, Stop, Continue' turbinado com análise de Lead Time.",
+        visual: "Quadro 'Começar, Parar, Continuar' turbinado com análise de Lead Time.",
         guide: "Desafie o time a encontrar 1% de melhoria. Use métricas reais e foque em automação."
       }
     } else {
@@ -58,7 +58,7 @@ const RetroGenerator = () => {
     const text = `
 Dinamica: ${result.title}
 Fundamentação: ${result.theory}
-Board: ${result.visual}
+Quadro: ${result.visual}
 Guia: ${result.guide}
     `
     navigator.clipboard.writeText(text)

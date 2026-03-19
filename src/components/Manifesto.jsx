@@ -5,7 +5,7 @@ const Manifesto = () => {
   const cards = [
     {
       icon: <Users className="text-blue-400" />,
-      title: "Servant Leadership",
+      title: "Liderança Servidora",
       description: "O SM não comanda; ele serve. Sua prioridade é remover barreiras para que o time brilhe."
     },
     {

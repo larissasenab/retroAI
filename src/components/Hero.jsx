@@ -16,7 +16,7 @@ const Hero = () => {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-primary text-sm font-medium mb-8"
         >
           <Sparkles size={16} />
-          <span>Viana & Moura Excellence</span>
+          <span>Excelência Viana & Moura</span>
         </motion.div>
 
         <motion.h1 
