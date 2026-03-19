@@ -24,34 +24,74 @@ const RetroGenerator = () => {
        return
     }
 
-    // Smart Logic for Retrospective suggestions
-    let dynamic = {}
-    const scenario = (formData.challenges + " " + formData.context).toLowerCase()
-
-    if (scenario.includes('conflito') || scenario.includes('crise') || formData.energy <= 4 || formData.lastSprintResult === 'ruim') {
-      dynamic = {
+    // Expanded Database of Retrospective Dynamics
+    const dynamics = [
+      {
+        id: 'psico-safety',
         title: "A Ilha da Segurança",
-        theory: "Baseada na Pirâmide de Lencioni, foca em restaurar a confiança e expor vulnerabilidades de forma segura.",
-        visual: "Um quadro dividido em 'O que me dá medo', 'O que me dá esperança' e 'Acordos de Paz'.",
-        guide: "Inicie com um check-in de sentimentos. Use comunicação não-violenta e garanta que todos tenham voz sem interrupções."
-      }
-    } else if (scenario.includes('performance') || formData.energy >= 8 || formData.lastSprintResult === 'excelente') {
-      dynamic = {
+        theory: "Foca em segurança psicológica e confiança, baseado no trabalho de Amy Edmondson e Patrick Lencioni.",
+        visual: "Quadro dividido em 'O que me dá medo', 'O que me dá esperança' e 'Acordos de Paz'.",
+        guide: "Priorize a escuta ativa. Garanta anonimato se necessário e use comunicação não-violenta.",
+        score: (scenario.includes('conflito') || scenario.includes('crise') || formData.energy <= 4 || formData.lastSprintResult === 'ruim') ? 10 : 0
+      },
+      {
+        id: 'sailboat',
+        title: "O Veleiro (Sailboat)",
+        theory: "Excelente para identificar objetivos, riscos e o que está 'atrasando' o time.",
+        visual: "Desenho de um veleiro com Vento (impulsores), Âncora (atrasos) e Rochas (riscos).",
+        guide: "Peça ao time para focar primeiro nas âncoras. Depois, discuta como as rochas podem ser evitadas.",
+        score: (scenario.includes('objetivo') || scenario.includes('risco') || scenario.includes('meta')) ? 8 : 2
+      },
+      {
+        id: '4ls',
+        title: "Os 4 Ls",
+        theory: "Uma abordagem equilibrada: Loved (Amou), Learned (Aprendeu), Lacked (Faltou), Longed For (Desejou).",
+        visual: "Quadro dividido em 4 áreas correspondentes aos 4 Ls.",
+        guide: "Cada pessoa preenche os 4 quadrantes. Foque a discussão no 'Lacked' e no 'Longed For' para ações.",
+        score: (formData.timeTogether.includes('3') || formData.model === 'Híbrido') ? 7 : 3
+      },
+      {
+        id: 'starfish',
+        title: "Estrela do Mar (Starfish)",
+        theory: "Foca na melhoria contínua através de ajustes incrementais nas atividades do time.",
+        visual: "Círculo com 5 divisões: Começar, Parar, Manter, Fazer Mais, Fazer Menos.",
+        guide: "Ideal para times médios. Ajuda a refinar processos que já existem mas precisam de ajuste fino.",
+        score: (formData.teamSize === 'Médio' && formData.energy >= 5) ? 8 : 2
+      },
+      {
+        id: '3-pigs',
+        title: "Os 3 Porquinhos",
+        theory: "Avalia a robustez dos processos. O que é palha (frágil), madeira (razoável) ou tijolo (sólido)?",
+        visual: "Três colunas com as casas de palha, madeira e tijolo.",
+        guide: "Discuta o que em nossa 'casa' (processo) pode cair com o primeiro sopro do lobo (problema).",
+        score: (scenario.includes('qualidade') || scenario.includes('retrabalho') || scenario.includes('processo')) ? 9 : 1
+      },
+      {
+        id: 'cruise-speed',
         title: "Velocidade de Cruzeiro",
-        theory: "Foca no Lean e na remoção de desperdícios para times que já performam bem.",
-        visual: "Quadro 'Começar, Parar, Continuar' turbinado com análise de Lead Time.",
-        guide: "Desafie o time a encontrar 1% de melhoria. Use métricas reais e foque em automação."
-      }
-    } else {
-      dynamic = {
+        theory: "Foca no Lean e na remoção de desperdícios para times de alta performance.",
+        visual: "Quadro 'Start, Stop, Continue' turbinado com análise de Lead Time.",
+        guide: "Desafie o time a encontrar 1% de melhoria. Use métricas reais e foque em automação.",
+        score: (formData.energy >= 8 && formData.lastSprintResult === 'excelente') ? 9 : 0
+      },
+      {
+        id: 'agility-radar',
         title: "Radar de Agilidade",
         theory: "Avaliação multidimensional do Scrum Guide para alinhamento geral.",
         visual: "Gráfico de teia com eixos: Qualidade, Comunicação, Processo e Diversão.",
-        guide: "Facilite a discussão sobre os pontos mais baixos do radar e defina um único plano de ação."
+        guide: "Facilite a discussão sobre os pontos mais baixos do radar e defina um único plano de ação.",
+        score: 4 // Baseline score
       }
-    }
+    ]
 
-    setResult(dynamic)
+    // Select the best dynamic (highest score)
+    // If scores are equal, sort randomly to increase variety
+    const selected = dynamics.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score
+      return Math.random() - 0.5
+    })[0]
+
+    setResult(selected)
   }
 
   const copyToClipboard = () => {
