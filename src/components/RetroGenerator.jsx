@@ -24,6 +24,8 @@ const RetroGenerator = () => {
        return
     }
 
+    const scenario = (formData.challenges + ' ' + formData.context).toLowerCase()
+
     // Expanded Database of Retrospective Dynamics
     const dynamics = [
       {
